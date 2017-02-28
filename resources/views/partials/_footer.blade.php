@@ -1,0 +1,1 @@
+<p class="text-center">Copyright Edmond Hobeika - All rights reserved</p>
