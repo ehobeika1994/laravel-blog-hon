@@ -13,15 +13,19 @@
 		
 		<div class="col-md-4">
 			<div class="well">
-				<dl class="dl-horizontal">
+				<dl>
+					<dt>URL Slug:</dt>
+					<dd><a href="{{ route('blog.single', $post->slug) }}">{{ route('blog.single', $post->slug) }}</a></dd>
+				</dl>
+				<dl>
 					<dt>Created At:</dt>
 					<dd>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</dd>
 				</dl>
-				<dl class="dl-horizontal">
+				<dl>
 					<dt>Updated At:</dt>
 					<dd>{{ date('M j, Y h:ia', strtotime($post->updated_at)) }}</dd>
 				</dl>
-				<dl class="dl-horizontal">
+				<dl>
 					<dt>Post By:</dt>
 					<dd>Edmond Hobeika</dd>
 				</dl>

@@ -12,6 +12,9 @@
 						{{ Form::label('title', "Title:") }}
 						{{ Form::text('title', null, array('class' => 'form-control')) }}
 						
+						{{ Form::label('slug', "Slug:") }}
+						{{ Form::text('slug', null, array('class' => 'form-control', 'minLength' => '5', 'maxLength' => '255')) }}
+												
 						{{ Form::label('body', "Body:") }}
 						{{ Form::textarea('body', null, array('class' => 'form-control')) }}
 						
