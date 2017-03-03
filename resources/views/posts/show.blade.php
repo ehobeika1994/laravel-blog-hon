@@ -26,8 +26,12 @@
 					<dd>{{ date('M j, Y h:ia', strtotime($post->updated_at)) }}</dd>
 				</dl>
 				<dl>
-					<dt>Post By:</dt>
-					<dd>Edmond Hobeika</dd>
+					<dt>Category:</dt>
+					<dd>{{ $post->category->name }}</dd>
+				</dl>
+				<dl>
+					<dt>Posted By:</dt>
+					<dd>{{ $post->user->name }}</dd>
 				</dl>
 				<hr>
 				<div class="row">
