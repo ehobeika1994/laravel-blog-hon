@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Post;
 use App\Category;
+use App\Tag;
 use Session;
 
 class PostController extends Controller
@@ -41,7 +42,8 @@ class PostController extends Controller
     public function create()
     {
 	    $categories = Category::all();
-        return view('posts.create')->withCategories($categories);
+	    $tags = Tag::all();
+        return view('posts.create')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -72,6 +74,9 @@ class PostController extends Controller
         $post->category_id = $request->category_id;
         
         $post->save();
+        
+        // save tags to post_tag_table
+        $post->tags()->sync($request->tag_id, false);
 
 		Session::flash('success', 'You have successfully submitted a post!');
         // redirect to another page
@@ -111,10 +116,18 @@ class PostController extends Controller
 	        $cats[$category->id] = $category->name;
 	        
         }
+        
+        $tags = Tag::all();
+		$tags2 = [];
+		foreach ($tags as $tag)
+		{
+			$tags2[$tag->id] = $tag->name;
+		}
         // return a view with the data inside
         return view('posts.edit', [
 	       'post' => $post,
-	       'categories' => $cats
+	       'categories' => $cats,
+	       'tags' => $tags2
         ]);
     }
 
@@ -155,6 +168,14 @@ class PostController extends Controller
         $post->category_id = $request->input('category_id');
         
         $post->save();
+		
+		// update tags to post_tag_table
+		if(isset($request->tag_id)) {
+			$post->tags()->sync($request->tag_id, true);
+		} else {
+			$post->tags()->sync(array());
+		}
+        
 
 		Session::flash('success', 'You have successfully updated a post!');
         // redirect to another page

@@ -27,6 +27,7 @@
 			        @if (Auth::check())
 		            <li><a href="{{ route('posts.index') }}">Posts</a></li>
 		            <li><a href="{{ route('categories.index') }}">Category</a></li>
+		            <li><a href="{{ route('tags.index') }}">Tag</a></li>
 		            <li role="separator" class="divider"></li>
 		            <li><a href="{{ route('logout') }}">Logout</a></li>
 		            @else
