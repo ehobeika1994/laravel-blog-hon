@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Post;
 use App\Category;
 use App\Tag;
+use Purifier;
 use Session;
 
 class PostController extends Controller
@@ -69,7 +70,7 @@ class PostController extends Controller
         
         $post->user_id = $request->user_id;
         $post->title = $request->title;
-        $post->body = $request->body;
+        $post->body = Purifier::clean($request->body);
         $post->slug = $request->slug;
         $post->category_id = $request->category_id;
         
@@ -164,7 +165,7 @@ class PostController extends Controller
         
         $post->title = $request->input('title');
         $post->slug = $request->input('slug');
-        $post->body = $request->input('body');
+        $post->body = Purifier::clean($request->input('body'));
         $post->category_id = $request->input('category_id');
         
         $post->save();
