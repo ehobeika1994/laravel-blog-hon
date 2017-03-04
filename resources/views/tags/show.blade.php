@@ -14,7 +14,7 @@
 		<div class="col-md-2">
 			{!! Form::open(['route' => ['tags.destroy', $tag->id], 'method' => 'DELETE']) !!}
 				{{ Form::submit('Delete', ['class' => 'btn btn-block btn-danger pull-right form-spacing-top' ])}}
-			{!! Form::close() !!}
+			{!! Form::close() !!}     
 		</div>
 	</div>
 	
